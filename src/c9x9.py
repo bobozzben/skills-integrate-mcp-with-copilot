@@ -1,33 +1,56 @@
 # c9x9.py: 九九乘法表生成器
 
+import os, sys
+
+# 導入 Flask 模組（如果尚未安裝，請先執行 pip install flask）
+from flask import Flask, render_template, redirect, url_for
+
+app = Flask(__name__)
+
+# 設定 Google OAuth2 密碼
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = 'true'
+sys.path.append(os.path.dirname(__file__))
+
 def generate_9x9_multiplication_table():
     """
-    Generates and prints the complete 99 multiplication table.
+    Generates and prints the complete 9×9 multiplication table.
     Each line displays an equation in the format "a × b = result", covering all combinations from a=1 to 9, b=1 to 9.
     Follows PEP8 style guidelines for readability and consistency.
     """
-    # Use nested loops to iterate through numbers 1-9
-    # For each combination (i, j), calculate the product i * j
-    # Print or return formatted strings with tab separation for alignment
+    
+    # 使用嵌套迴圈遍歷數字 1-9
+    output_lines = []
+    for a in range(1, 10):
+        line_parts = [f"{a} × {b} = {a * b}" for b in range(1, 10)]
+        formatted_line = "\t".join(line_parts)
+        output_lines.append(formatted_line)
+    
+    # 輸出每行結果
+    for line in output_lines:
+        print(line)
 
-    for a in range(1, 10):  # Iterate from 1 to 9 for 'a'
-        line = ""
-        for b in range(1, 10):  # Iterate from 1 to 9 for 'b'
-            result = a * b
-            if b > 1:
-                line += "\t"  # Add tab separation after the first element on each row
-            equation = f"{a} × {b} = {result}"
-            line += equation
-        
-        print(line)  # Print each formatted line directly
+@app.route('/')
+def login():
+    return render_template('login.html')
 
-# Optional: If this file is meant to be executed as a script, include a main function
 if __name__ == "__main__":
-    import sys
+    generate_9x9_multiplication_table()
+    """
+    Generates and prints the complete 9×9 multiplication table.
+    Each line displays an equation in the format "a × b = result", covering all combinations from a=1 to 9, b=1 to 9.
+    Follows PEP8 style guidelines for readability and consistency.
+    """
     
-    # Check for command-line arguments if needed (not specified by user)
-    if len(sys.argv) > 1:
-        print("Usage: python c9x9.py [optional parameters] - not implemented yet.")
+    # 使用嵌套迴圈遍歷數字 1-9
+    output_lines = []
+    for a in range(1, 10):
+        line_parts = [f"{a} × {b} = {a * b}" for b in range(1, 10)]
+        formatted_line = "\t".join(line_parts)
+        output_lines.append(formatted_line)
     
-    # Generate and display the table immediately when run
+    # 輸出每行結果
+    for line in output_lines:
+        print(line)
+
+if __name__ == "__main__":
     generate_9x9_multiplication_table()
