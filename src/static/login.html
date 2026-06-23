@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 登入頁面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .login-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #3367D6;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>歡迎使用本服務</h2>
+        <p>請登入您的 Google 帳號以繼續</p>
+        
+        <!-- Google OAuth2 按鈕 -->
+        <button onclick="handleGoogleLogin()">Google 登入</button>
+
+        <script>
+            function handleGoogleLogin() {
+                // 從這裡開始 Google OAuth2 認證處理邏輯
+                console.log("觸發 Google 登入流程");
+                
+                window.location.href = 'https://accounts.google.com/o/oauth2/auth?' +
+                    'client_id=YOUR_CLIENT_ID' +
+                    '&response_type=code' +
+                    '&scope=email profile';
+            }
+        </script>
+    </div>
+</body>
+</html>
