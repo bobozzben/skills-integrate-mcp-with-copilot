@@ -9,7 +9,8 @@
       "moby": false
     }    
   },
-  "forwardPorts": [8000],
+  "runArgs": ["--add-host=host.docker.internal:host-gateway"],
+  "forwardPorts": [8000,11434],
   "postCreateCommand": "pip install -r requirements.txt",
   "customizations": {
     "vscode": {
@@ -25,5 +26,6 @@
         "chat.mcp.enabled": true
       }
     }
-  }
+  },
+
 }
