@@ -1,69 +1,146 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google 登入頁面</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mergington High School Login</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        
-        .login-container {
-            border: 1px solid #ccc;
-            padding: 20px;
-            width: 300px;
-        }
-        
-        h2 {
-            text-align: center;
-        }
-        
-        p {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        button {
-            background-color: #4285F4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            width: 100%;
-            font-size: 16px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        
-        button:hover {
-            background-color: #3367D6;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>歡迎使用本服務</h2>
-        <p>請登入您的 Google 帳號以繼續</p>
-        
-        <!-- Google OAuth2 按鈕 -->
-        <button onclick="handleGoogleLogin()">Google 登入</button>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background: #f5f5f5;
+      }
 
-        <script>
-            function handleGoogleLogin() {
-                // 從這裡開始 Google OAuth2 認證處理邏輯
-                console.log("觸發 Google 登入流程");
-                
-                window.location.href = 'https://accounts.google.com/o/oauth2/auth?' +
-                    'client_id=YOUR_CLIENT_ID' +
-                    '&response_type=code' +
-                    '&scope=email profile';
-            }
-        </script>
+      .auth-card {
+        width: min(420px, calc(100% - 24px));
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+      }
+
+      h2 {
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 16px;
+      }
+
+      .tabs button {
+        flex: 1;
+        border: none;
+        background: #e8ebff;
+        color: #1a237e;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .tabs button.active {
+        background: #1a237e;
+        color: white;
+      }
+
+      form {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      form.active {
+        display: flex;
+      }
+
+      label {
+        font-weight: 600;
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      button {
+        background: #1a237e;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .message {
+        margin-top: 12px;
+        padding: 10px;
+        border-radius: 6px;
+        display: none;
+      }
+
+      .message.error {
+        background: #ffebee;
+        color: #c62828;
+        display: block;
+      }
+
+      .message.success {
+        background: #e8f5e9;
+        color: #2e7d32;
+        display: block;
+      }
+
+      .hint {
+        margin-top: 12px;
+        font-size: 14px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-card">
+      <h2>Mergington High School</h2>
+      <p>Sign in to register for activities.</p>
+
+      <div class="tabs">
+        <button id="login-tab" class="active" type="button">Sign In</button>
+        <button id="register-tab" type="button">Create Account</button>
+      </div>
+
+      <form id="login-form" class="active">
+        <label for="login-email">Email</label>
+        <input id="login-email" name="email" type="email" required />
+
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" required />
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <form id="register-form">
+        <label for="register-name">Full name</label>
+        <input id="register-name" name="name" type="text" required />
+
+        <label for="register-email">Email</label>
+        <input id="register-email" name="email" type="email" required />
+
+        <label for="register-password">Password</label>
+        <input id="register-password" name="password" type="password" required />
+
+        <button type="submit">Create Student Account</button>
+      </form>
+
+      <div id="auth-message" class="message"></div>
+      <p class="hint">Demo accounts: student@mergington.edu / student123, clubadmin@mergington.edu / admin123, superadmin@mergington.edu / super123</p>
     </div>
-</body>
+
+    <script src="app.js"></script>
+  </body>
 </html>
