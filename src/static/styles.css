@@ -6,7 +6,6 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
   line-height: 1.6;
   color: #333;
   max-width: 1200px;
@@ -16,36 +15,49 @@ body {
 }
 
 header {
-  text-align: center;
-  padding: 20px 0;
+  padding: 20px;
   margin-bottom: 30px;
   background-color: #1a237e;
   color: white;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
-header h1 {
-  margin-bottom: 10px;
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.auth-panel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.auth-panel .pill {
+  background: white;
+  color: #1a237e;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 main {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 24px;
   justify-content: center;
-}
-
-@media (min-width: 768px) {
-  main {
-    grid-template-columns: 2fr 1fr;
-  }
 }
 
 section {
   background-color: white;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 500px;
 }
@@ -74,7 +86,6 @@ section h3 {
   margin-bottom: 8px;
 }
 
-/* New styles for participants section */
 .participants-container {
   margin-top: 15px;
   padding-top: 12px;
@@ -100,7 +111,6 @@ section h3 {
   justify-content: space-between;
 }
 
-/* Remove the bullet point pseudo-element */
 .participants-section ul li::before {
   display: none;
 }
@@ -117,7 +127,6 @@ section h3 {
   cursor: pointer;
   font-size: 14px;
   padding: 2px 5px;
-  transition: all 0.2s;
   border-radius: 3px;
 }
 
@@ -164,7 +173,8 @@ button:hover {
   background-color: #3949ab;
 }
 
-.message {
+.message,
+.info {
   margin-top: 20px;
   padding: 10px;
   border-radius: 4px;
@@ -190,6 +200,10 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+.role-panel {
+  max-width: 100%;
 }
 
 footer {
